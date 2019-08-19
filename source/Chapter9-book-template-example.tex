@@ -1,0 +1,76 @@
+\documentclass[11pt, openright,
+               twoside, onecolumn, final]{memoir}
+
+%% Setting up the paper size
+\setstocksize{9in}{6in}
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+\usepackage{canoniclayout}
+\nonzeroparskip
+\setlength{\parindent}{0pt}
+
+%% Setting up the font
+\usepackage[T1]{fontenc}
+\usepackage{baskervillef}
+\usepackage[scale=.95,type1]{cabin}
+\usepackage[baskerville,vvarbb]{newtxmath}
+\usepackage[cal=boondoxo]{mathalfa}
+
+%% Disable hypertext (annoying in output)
+\usepackage{nohyperref}
+\usepackage{url}
+
+%% Setup chapter heading
+\renewcommand*\rmdefault{dayrom}
+\chapterstyle{madsen}
+
+%%%%%%%%%%%%
+%% A long list of commands taken from
+%% the default template
+%%%%%%%%%%%%
+
+
+\begin{document}
+
+\frontmatter
+
+%% Title page
+\begingroup
+\thispagestyle{empty}
+{\bfseries\sffamily\noindent
+$if(series)$ {\large $series$}\\[50pt]$endif$
+% Book title
+{\huge $title$}\\[35pt]
+% Authors
+{\Large $for(author)$$author$$sep$\\$endfor$}
+\vfill
+\endgroup
+
+%% Copyright page
+\newpage
+~\vfill
+\thispagestyle{empty}
+% Book title
+{\Large $title$}\\[15pt]
+% Authors
+\noindent Copyright
+    $year$
+    $for(author)$$author$$sep$, $endfor$\\
+\clearpage
+
+%% Table of contents
+$if(toc)$
+\setcounter{tocdepth}{1}
+\pagestyle{empty}
+\tableofcontents
+\cleardoublepage
+$endif$
+
+
+%% Document body
+\mainmatter
+\counterwithout{figure}{chapter}
+\pagestyle{plain}
+
+$body$
+
+\end{document}
